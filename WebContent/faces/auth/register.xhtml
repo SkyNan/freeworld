@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><h:outputText value="#{global.auth_register_page_title}"></h:outputText></title>
+</h:head>
+<h:body>
+	<h:form id="registerForm">
+	 	<p:dialog visible="true" closable="false" draggable="false" resizable="false" header="#{global.auth_register_dialog_header}">
+	 		<p:panelGrid columns="2">
+	 			<h:outputText value="#{global.auth_register_userid}"></h:outputText>
+	 			<p:inputText value="#{registerController.user.id}" maxlength="30"></p:inputText>
+	 			<h:outputText value="#{global.auth_register_password}"></h:outputText>
+	 			<p:inputText value="#{registerController.user.password}" maxlength="30"></p:inputText>
+	 			<h:outputText value="#{global.auth_register_password_again}"></h:outputText>
+	 			<p:inputText value="#{registerController.user.passwordAgain}" maxlength="30"></p:inputText>
+	 			<p:commandLink id="register" ajax="true" process="@this" action="#{loginController.toLogin}">  
+        			<h:outputText value="#{global.auth_register_to_login}"/>  
+    			</p:commandLink> 
+	 			<p:commandButton value="#{global.auth_register_register}" style="width:100%;" actionListener="#{registerController.register}"></p:commandButton>
+	 		</p:panelGrid>
+	 		<p:messages for="registerForm" display="text"
+			autoUpdate="true"></p:messages>	 		
+	 	</p:dialog>
+	</h:form>
+</h:body>
+</html>

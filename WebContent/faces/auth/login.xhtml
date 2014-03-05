@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><h:outputText value="#{global.auth_login_page_title}"></h:outputText></title>
+</h:head>
+<h:body>
+	<p:dialog visible="true" closable="false" resizable="false" draggable="false" header="#{global.auth_login_dialog_header}">
+		<h:form id="login" prependId="false" onsubmit="document.getElementById('login').action='j_security_check';">
+			<p:panelGrid columns="2">
+				<h:outputText value="#{global.auth_login_userid}"></h:outputText>
+				<p:inputText maxlength="20" id="j_username" required="true" requiredMessage="#{global.auth_login_no_username}"></p:inputText>
+				<h:outputText value="#{global.auth_login_password}"></h:outputText>
+				<p:inputText maxlength="20" id="j_password" required="true" requiredMessage="#{global.auth_login_no_password}"></p:inputText>
+				<p:commandLink id="register" ajax="true" process="@this" action="#{registerController.toRegister}">  
+        			<h:outputText value="#{global.auth_login_register}"/>  
+    			</p:commandLink> 				
+				<p:commandButton value="#{global.auth_login_login}" ajax="false" style="width:100%;"></p:commandButton>
+			</p:panelGrid>
+		</h:form>	
+	</p:dialog>
+</h:body>
+</html>
