@@ -60,11 +60,15 @@ public class RegisterController implements Serializable{
 				manager.addComponentMessageWarn(COMPONENT_ID,"该用户名已存在,请重新输入","该用户名已存在,请重新输入");
 			}else{
 				try{
-					user.setPassword(PasswordHash.makePasswordHash(password));
-					Role role = roleBean.findById("teacher");
-					user.getRoles().add(role);
-					userBean.save(user);
-					manager.addComponentMessageInfo(COMPONENT_ID, "注册成功，返回登陆界面登陆","注册成功，返回登陆界面登陆");
+					user.setPassword(PasswordHash.makePasswordHashBySha256(password));
+					Role role = roleBean.findById(Role.TRAVEL_ROLE_ID);
+					if(role==null){
+						manager.addComponentMessageInfo(COMPONENT_ID, "系统错误，请联系管理员","系统错误，请联系管理员");
+					}else{
+						user.getRoles().add(role);
+						userBean.save(user);
+						manager.addComponentMessageInfo(COMPONENT_ID, "注册成功，返回登陆界面登陆","注册成功，返回登陆界面登陆");
+					}
 				}catch(Exception ex){
 					manager.addComponentMessageWarn(COMPONENT_ID,"注册失败，网络故障","注册失败，网络故障");
 				}

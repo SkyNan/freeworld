@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 @Entity(name="s_user")
@@ -23,13 +24,17 @@ public class User implements Serializable{
 	@Column(length = 30)
 	private String id; //鐢ㄦ埛鐧诲綍鎵�敤璐﹀彿
 	
-	@Column(length = 50,nullable = false)
+	@Column(length = 256,nullable = false)
 	private String password; //鐢ㄦ埛鐧诲綍鎵�敤瀵嗙爜
 	
 	@ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)  
-    @JoinTable(name = "s_userrole", inverseJoinColumns = @JoinColumn(name = "rolename"), joinColumns = @JoinColumn(name = "userid"))
+    @JoinTable(name = "s_userrole", inverseJoinColumns = @JoinColumn(name = "rolename"), joinColumns = @JoinColumn(name = "id"))
 	private Set<Role> roles = new HashSet<>();
 
+	@OneToOne(cascade={CascadeType.ALL})
+    @JoinColumn(name="information_id")
+	private UserInformation information;
+	
 	@Transient
 	private String passwordAgain;
 	
@@ -63,6 +68,14 @@ public class User implements Serializable{
 
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public UserInformation getInformation() {
+		return information;
+	}
+
+	public void setInformation(UserInformation information) {
+		this.information = information;
 	}
 
 }

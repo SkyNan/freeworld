@@ -5,7 +5,7 @@
   <persistence-unit name="defaultPersistenceUnit"
     transaction-type="JTA">
     <provider>oracle.toplink.essentials.PersistenceProvider</provider>
-    <jta-data-source>jdbc/__default</jta-data-source>
+    <jta-data-source>jdbc/share_mysql</jta-data-source>
     <class>com.freeworld.share.entity.Role</class>
     <class>com.freeworld.share.entity.User</class>
     <properties>

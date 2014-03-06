@@ -15,7 +15,8 @@ import javax.persistence.ManyToMany;
 public class Role implements Serializable{
 
 	private static final long serialVersionUID = 9919345432901098L;
-
+	public static final String TRAVEL_ROLE_ID ="tourist";
+	
 	@Id
 	@Column(length=20)
 	private String rolename;

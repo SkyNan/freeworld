@@ -10,19 +10,25 @@
 	<title><h:outputText value="#{global.auth_login_page_title}"></h:outputText></title>
 </h:head>
 <h:body>
-	<p:dialog visible="true" closable="false" resizable="false" draggable="false" header="#{global.auth_login_dialog_header}">
-		<h:form id="login" prependId="false" onsubmit="document.getElementById('login').action='j_security_check';">
+	<p:dialog visible="true" closable="false" resizable="false"
+		draggable="false" header="#{global.auth_login_dialog_header}">
+		<h:form id="login" prependId="false"
+			onsubmit="document.getElementById('login').action='j_security_check';">
 			<p:panelGrid columns="2">
 				<h:outputText value="#{global.auth_login_userid}"></h:outputText>
-				<p:inputText maxlength="20" id="j_username" required="true" requiredMessage="#{global.auth_login_no_username}"></p:inputText>
+				<p:inputText maxlength="20" id="j_username" required="true"
+					requiredMessage="#{global.auth_login_no_username}"></p:inputText>
 				<h:outputText value="#{global.auth_login_password}"></h:outputText>
-				<p:inputText maxlength="20" id="j_password" required="true" requiredMessage="#{global.auth_login_no_password}"></p:inputText>
-				<p:commandLink id="register" ajax="true" process="@this" action="#{registerController.toRegister}">  
-        			<h:outputText value="#{global.auth_login_register}"/>  
-    			</p:commandLink> 				
-				<p:commandButton value="#{global.auth_login_login}" ajax="false" style="width:100%;"></p:commandButton>
+				<p:inputText maxlength="20" id="j_password" required="true"
+					requiredMessage="#{global.auth_login_no_password}"></p:inputText>
+				<p:commandLink id="register" ajax="true" process="@this"
+					action="#{registerController.toRegister}">
+					<h:outputText value="#{global.auth_login_register}" />
+				</p:commandLink>
+				<p:commandButton value="#{global.auth_login_login}" ajax="false"
+					style="width:100%;"></p:commandButton>
 			</p:panelGrid>
-		</h:form>	
+		</h:form>
 	</p:dialog>
 </h:body>
 </html>

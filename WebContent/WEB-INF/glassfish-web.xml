@@ -2,5 +2,17 @@
 
 <!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
 <glassfish-web-app>
-    <context-root>/SIF</context-root>
+  <context-root>/SIF</context-root>
+  <security-role-mapping>
+    <role-name>teacher</role-name>
+    <group-name>teacher</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>parents</role-name>
+    <group-name>parents</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>sysadmin</role-name>
+    <group-name>sysadmin</group-name>
+  </security-role-mapping>
 </glassfish-web-app>

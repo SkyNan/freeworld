@@ -1,5 +1,6 @@
 package com.freeworld.free.utils;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -11,11 +12,27 @@ public class PasswordHash {
 	private static Logger logger = LoggerFactory.getLogger(PasswordHash.class);
 
 	private static final String ALGORITHMMD5 = "MD5";
+	private static final String ALGORITHNSHA256 = "SHA-256";
 
 	public static String makePasswordHash(String password){
 		return md5Encrypt(password);
 	}
 
+	public static String makePasswordHashBySha256(String pasword){
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance(ALGORITHNSHA256);
+			md.update(pasword.getBytes("UTF-8")); // Change this to "UTF-16" if needed
+	        byte[] digest = md.digest();
+	        BigInteger bigInt = new BigInteger(1, digest);
+	        String output = bigInt.toString(16);
+	        return output;
+		} catch (Exception e) {
+			logger.error("Error on password hash.", e);
+			throw new RuntimeException("Error on password hash.", e);
+		}
+	}
+	
 	private static String md5Encrypt(String data)  {
 		MessageDigest md;
 		try {
