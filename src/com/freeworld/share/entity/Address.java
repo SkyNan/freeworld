@@ -2,11 +2,14 @@ package com.freeworld.share.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="s_address")
 public class Address implements Serializable{
@@ -15,7 +18,7 @@ public class Address implements Serializable{
 
 	@Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(length=20,nullable=false)
 	private String country;
@@ -29,11 +32,15 @@ public class Address implements Serializable{
 	@Column(length=40,nullable=true)
 	private String addition;
 	
-	public int getId() {
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="family_id")
+	private Family family;
+	
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -67,6 +74,14 @@ public class Address implements Serializable{
 
 	public void setAddition(String addition) {
 		this.addition = addition;
+	}
+
+	public Family getFamily() {
+		return family;
+	}
+
+	public void setFamily(Family family) {
+		this.family = family;
 	}
 	
 	

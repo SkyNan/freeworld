@@ -5,9 +5,14 @@
   <persistence-unit name="defaultPersistenceUnit"
     transaction-type="JTA">
     <provider>oracle.toplink.essentials.PersistenceProvider</provider>
-    <jta-data-source>jdbc/share_mysql</jta-data-source>
+    <jta-data-source>jdbc/mysql</jta-data-source>
     <class>com.freeworld.share.entity.Role</class>
     <class>com.freeworld.share.entity.User</class>
+    <class>com.freeworld.share.entity.Address</class>
+    <class>com.freeworld.share.entity.Family</class>
+    <class>com.freeworld.share.entity.Student</class>
+    <class>com.freeworld.share.entity.Teacher</class>
+    <class>com.freeworld.share.entity.UserInfo</class>
     <properties>
 <!--       <property name="eclipselink.ddl-generation" value="create-or-extend-tables" /> -->
       <property name="eclipselink.logging.level" value="FINE"/>

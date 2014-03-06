@@ -11,7 +11,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 @Entity(name = "s_student")
 public class Student implements Serializable{
@@ -37,8 +39,12 @@ public class Student implements Serializable{
 	@Column(length = 15)
 	private String level;
 	
-	@ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "studets", fetch = FetchType.LAZY)  
+	@ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "students", fetch = FetchType.LAZY)  
 	private Set<Teacher> teachers = new HashSet<>();
+	
+	@ManyToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="family_id")
+	private Family family;
 	
 	public int getId() {
 		return id;
@@ -86,5 +92,13 @@ public class Student implements Serializable{
 
 	public void setStuno(String stuno) {
 		this.stuno = stuno;
+	}
+
+	public Family getFamily() {
+		return family;
+	}
+
+	public void setFamily(Family family) {
+		this.family = family;
 	}
 }

@@ -67,6 +67,7 @@ public class RegisterController implements Serializable{
 					}else{
 						user.getRoles().add(role);
 						userBean.save(user);
+						manager.logoff();
 						manager.addComponentMessageInfo(COMPONENT_ID, "注册成功，返回登陆界面登陆","注册成功，返回登陆界面登陆");
 					}
 				}catch(Exception ex){

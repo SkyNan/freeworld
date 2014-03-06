@@ -22,7 +22,7 @@
 	 			<p:commandLink id="register" ajax="true" process="@this" action="#{loginController.toLogin}">  
         			<h:outputText value="#{global.auth_register_to_login}"/>  
     			</p:commandLink> 
-	 			<p:commandButton value="#{global.auth_register_register}" style="width:100%;" actionListener="#{registerController.register}"></p:commandButton>
+	 			<p:commandButton value="#{global.auth_register_register}" update=":registerForm" style="width:100%;" actionListener="#{registerController.register}"></p:commandButton>
 	 		</p:panelGrid>
 	 		<p:messages for="registerForm" display="text"
 			autoUpdate="true"></p:messages>	 		

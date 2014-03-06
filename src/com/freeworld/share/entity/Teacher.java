@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,8 +25,11 @@ public class Teacher implements Serializable{
 	private int id;
 	
 	@ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)  
-    @JoinTable(name = "s_teacher_student", inverseJoinColumns = @JoinColumn(name = "studentid"), joinColumns = @JoinColumn(name = "teacherid"))
-	private Set<Student> studets = new HashSet<Student>();
+    @JoinTable(name = "s_teacher_student", inverseJoinColumns = @JoinColumn(name = "student_id"), joinColumns = @JoinColumn(name = "teacher_id"))
+	private Set<Student> students = new HashSet<Student>();
+	
+	@Column(length=1000)
+	private String description;
 	
 	public int getId() {
 		return id;
@@ -35,12 +39,20 @@ public class Teacher implements Serializable{
 		this.id = id;
 	}
 
-	public Set<Student> getStudets() {
-		return studets;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setStudets(Set<Student> studets) {
-		this.studets = studets;
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Set<Student> getStudents() {
+		return students;
+	}
+
+	public void setStudents(Set<Student> students) {
+		this.students = students;
 	}
 	
 	

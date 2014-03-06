@@ -30,10 +30,10 @@ public class User implements Serializable{
 	@ManyToMany(cascade = CascadeType.REFRESH,fetch = FetchType.EAGER)  
     @JoinTable(name = "s_userrole", inverseJoinColumns = @JoinColumn(name = "rolename"), joinColumns = @JoinColumn(name = "id"))
 	private Set<Role> roles = new HashSet<>();
-
-	@OneToOne(cascade={CascadeType.ALL})
-    @JoinColumn(name="information_id")
-	private UserInformation information;
+	
+	@OneToOne(cascade=CascadeType.ALL)
+    @JoinColumn(name="info_id",nullable=true)
+	private UserInfo info;
 	
 	@Transient
 	private String passwordAgain;
@@ -70,12 +70,12 @@ public class User implements Serializable{
 		this.roles = roles;
 	}
 
-	public UserInformation getInformation() {
-		return information;
+	public UserInfo getInfo() {
+		return info;
 	}
 
-	public void setInformation(UserInformation information) {
-		this.information = information;
+	public void setInfo(UserInfo info) {
+		this.info = info;
 	}
 
 }
