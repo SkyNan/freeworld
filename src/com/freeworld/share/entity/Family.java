@@ -11,7 +11,10 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 @Entity(name = "s_family")
 public class Family implements Serializable{
@@ -43,11 +46,18 @@ public class Family implements Serializable{
 	@Column(length=30)
 	private String email;
 	
+	@OneToOne(cascade= CascadeType.REFRESH)
+	@JoinColumn(name="user_id")
+	private User user;
+	
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="family")
 	private Set<Address> address = new HashSet<>();
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="family")
-	private Set<Student> students = new HashSet<>();
+	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="families")
+	private HashSet<Grade> grade = new HashSet<>();
+	
+	@ManyToMany(cascade=CascadeType.REFRESH,mappedBy="families")
+	private Set<Announcement> announces = new HashSet<Announcement>();
 	
 	public long getId() {
 		return id;
@@ -89,14 +99,6 @@ public class Family implements Serializable{
 		this.address = address;
 	}
 
-	public Set<Student> getStudents() {
-		return students;
-	}
-
-	public void setStudents(Set<Student> students) {
-		this.students = students;
-	}
-
 	public String getFather_phone() {
 		return father_phone;
 	}
@@ -127,5 +129,21 @@ public class Family implements Serializable{
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Set<Announcement> getAnnounces() {
+		return announces;
+	}
+
+	public void setAnnounces(Set<Announcement> announces) {
+		this.announces = announces;
 	}
 }

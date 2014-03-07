@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
@@ -31,9 +32,14 @@ public class User implements Serializable{
     @JoinTable(name = "s_userrole", inverseJoinColumns = @JoinColumn(name = "rolename"), joinColumns = @JoinColumn(name = "id"))
 	private Set<Role> roles = new HashSet<>();
 	
-	@OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name="info_id",nullable=true)
-	private UserInfo info;
+	@OneToOne(mappedBy="user")
+	private Family family;
+	
+	@OneToOne(mappedBy="user")
+	private Teacher teacher;
+	
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="user",fetch = FetchType.LAZY)
+	private Set<Announcement> announcements = new HashSet<>();
 	
 	@Transient
 	private String passwordAgain;
@@ -70,12 +76,28 @@ public class User implements Serializable{
 		this.roles = roles;
 	}
 
-	public UserInfo getInfo() {
-		return info;
+	public Set<Announcement> getAnnouncements() {
+		return announcements;
 	}
 
-	public void setInfo(UserInfo info) {
-		this.info = info;
+	public void setAnnouncements(Set<Announcement> announcements) {
+		this.announcements = announcements;
+	}
+
+	public Family getFamily() {
+		return family;
+	}
+
+	public void setFamily(Family family) {
+		this.family = family;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 }

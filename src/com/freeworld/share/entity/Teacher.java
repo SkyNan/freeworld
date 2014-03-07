@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity(name = "s_teacher")
 public class Teacher implements Serializable{
@@ -30,6 +31,16 @@ public class Teacher implements Serializable{
 	
 	@Column(length=1000)
 	private String description;
+	
+	@ManyToMany(cascade = CascadeType.REFRESH, mappedBy = "teachers", fetch = FetchType.LAZY)
+	private Set<Grade> grades = new HashSet<>();
+	
+	@OneToOne(cascade=CascadeType.REFRESH)
+	@JoinColumn(name="user_id")
+	private User user;
+	
+	@ManyToMany(cascade=CascadeType.REFRESH,mappedBy="teachers")
+	private Set<Announcement> announces = new HashSet<Announcement>();
 	
 	public int getId() {
 		return id;
@@ -53,6 +64,22 @@ public class Teacher implements Serializable{
 
 	public void setStudents(Set<Student> students) {
 		this.students = students;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public Set<Announcement> getAnnounces() {
+		return announces;
+	}
+
+	public void setAnnounces(Set<Announcement> announces) {
+		this.announces = announces;
 	}
 	
 	
