@@ -26,6 +26,9 @@ public class Student implements Serializable{
 
 	@Column(length = 20)
 	private String stuno;
+
+	@Column(length = 20)
+	private String name;
 	
 	@Column(length = 30)
 	private String school;
@@ -35,6 +38,9 @@ public class Student implements Serializable{
 	
 	@Column(length = 15)
 	private String clas;
+	
+	@Column
+	private int age;
 	
 	@Column(length = 15)
 	private String level;
@@ -100,5 +106,21 @@ public class Student implements Serializable{
 
 	public void setFamily(Family family) {
 		this.family = family;
+	}
+
+	public int getAge() {
+		return age;
+	}
+
+	public void setAge(int age) {
+		this.age = age;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 }

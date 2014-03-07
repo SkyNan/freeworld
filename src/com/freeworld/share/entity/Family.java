@@ -26,13 +26,22 @@ public class Family implements Serializable{
 	private String fathername;
 	
 	@Column(length=20)
-	private String fathername_phone;
+	private String father_phone;
+	
+	@Column
+	private Boolean father_get_message;
 	
 	@Column(length=20)
 	private String mothername;
 	
 	@Column(length=20)
 	private String mother_phone;
+	
+	@Column
+	private Boolean mother_get_message;
+	
+	@Column(length=30)
+	private String email;
 	
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.EAGER, mappedBy="family")
 	private Set<Address> address = new HashSet<>();
@@ -64,14 +73,6 @@ public class Family implements Serializable{
 		this.mothername = mothername;
 	}
 
-	public String getFathername_phone() {
-		return fathername_phone;
-	}
-
-	public void setFathername_phone(String fathername_phone) {
-		this.fathername_phone = fathername_phone;
-	}
-
 	public String getMother_phone() {
 		return mother_phone;
 	}
@@ -94,5 +95,37 @@ public class Family implements Serializable{
 
 	public void setStudents(Set<Student> students) {
 		this.students = students;
+	}
+
+	public String getFather_phone() {
+		return father_phone;
+	}
+
+	public void setFather_phone(String father_phone) {
+		this.father_phone = father_phone;
+	}
+
+	public Boolean isFather_get_message() {
+		return father_get_message;
+	}
+
+	public void setFather_get_message(Boolean father_get_message) {
+		this.father_get_message = father_get_message;
+	}
+
+	public Boolean isMother_get_message() {
+		return mother_get_message;
+	}
+
+	public void setMother_get_message(Boolean mother_get_message) {
+		this.mother_get_message = mother_get_message;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
