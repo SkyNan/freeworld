@@ -7,7 +7,12 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title></title>
+	<title><h:outputText value="#{global.main_familyinfo_title}"></h:outputText></title>
+	<style type="text/css">
+body{
+	background-color: #F4F0EC;
+}
+</style>
 </h:head>
 <h:body>
 	<p:dialog visible="true" closable="false" resizable="false"
@@ -109,7 +114,7 @@
 					</p:row>
 				</h:panelGrid>
 			</p:fieldset>
-			<p:separator id="customSeparator" style="width:700px;height:1px" />
+			<p:separator id="customSeparator" style="width:800px;height:1px" />
 			<p:fieldset legend="#{global.main_familyinfo_student_info}"
 				toggleable="true">
 				<h:panelGrid >
@@ -179,7 +184,7 @@
 					</p:row>
 				</h:panelGrid>
 			</p:fieldset>
-			<p:separator id="customSeparator1" style="width:700px;height:1px" />
+			<p:separator id="customSeparator1" style="width:800px;height:1px" />
 			<p:panel style="margin-bottom:30px;">
 				<div align="right" style="margin-top: 0px;">
 				    <p:commandButton value="#{global.main_familyinfo_confitm}"></p:commandButton>	

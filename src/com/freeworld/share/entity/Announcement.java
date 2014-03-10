@@ -1,6 +1,7 @@
 package com.freeworld.share.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,6 +16,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Announcement implements Serializable {
@@ -37,6 +41,9 @@ public class Announcement implements Serializable {
 
 	@Column
 	private Boolean pub;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date createdate;
 
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "user_id")
@@ -49,7 +56,12 @@ public class Announcement implements Serializable {
 	@ManyToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
 	@JoinTable(name = "s_announcement_teacher", inverseJoinColumns = @JoinColumn(name = "teacher_id", referencedColumnName = "id"), joinColumns = @JoinColumn(name = "announcement_id", referencedColumnName = "id"))
 	private Set<Teacher> teachers = new HashSet<>();
-
+	
+	@PrePersist
+	private void prePersist(){
+		createdate = new Date();
+	}
+	
 	public long getId() {
 		return id;
 	}
@@ -112,6 +124,14 @@ public class Announcement implements Serializable {
 
 	public void setFamilies(Set<Family> families) {
 		this.families = families;
+	}
+
+	public Date getCreatedate() {
+		return createdate;
+	}
+
+	public void setCreatedate(Date createdate) {
+		this.createdate = createdate;
 	}
 
 }

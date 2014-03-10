@@ -7,46 +7,71 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title></title>
+	<title><h:outputText value="#{global.main_home_title}"></h:outputText></title>
 	<link type="text/css" rel="stylesheet" href="#{request.contextPath}/css/default.css" />
 	<style type="text/css">
-.ui-layout-north {
-	z-index: 20 !important;
-	overflow: visible !important;;
-}
-
-.ui-layout-north .ui-layout-unit-content {
-	overflow: visible !important;
+.ui-widget-content{
+	border: 0px solid #E0CFC2;
+	background: #F4F0EC;
+	color: #1E1B1D
 }
 </style>
 </h:head>
 <h:body>
 <p:layout fullPage="true">
-
-		<p:layoutUnit position="north" size="100" header="Top"
-			resizable="true" closable="true" collapsible="true">
-			<h:outputText value="North unit content." />
+		<p:layoutUnit position="north" size="50"
+			resizable="true" closable="false" collapsible="true">
 		</p:layoutUnit>
 
-		<p:layoutUnit position="south" size="100" header="Bottom"
-			resizable="true" closable="true" collapsible="true">
-			<h:outputText value="South unit content." />
+		<p:layoutUnit position="south" size="50" 
+			resizable="true" closable="false" collapsible="true">
 		</p:layoutUnit>
+		<p:layoutUnit position="west" size="200" header="#{global.main_home_menu}"
+			resizable="true" closable="false" collapsible="true">
+			<h:form style="margin-top:20px;">
+           		<p:tieredMenu style="width:180px">
+           			<p:menuitem value="Delete" icon="ui-icon-close"/>
+        			<p:separator />  
+        			<p:menuitem value="Prime" url="http://www.prime.com.tr"  icon="ui-icon-extlink"/>
+    			</p:tieredMenu>
+        	</h:form>
+   		</p:layoutUnit>
 
-		<p:layoutUnit position="west" size="200" header="Left"
-			resizable="true" closable="true" collapsible="true">
-			<h:outputText value="West unit content." />
-		</p:layoutUnit>
-
-		<p:layoutUnit position="east" size="200" header="Right"
-			resizable="true" closable="true" collapsible="true" effect="drop">
-			<h:outputText value="Right unit content." />
+		<p:layoutUnit position="east" size="300" header="#{global.main_home_announcement}"
+			resizable="true" closable="false" collapsible="true">
+			<p:fieldset legend="#{global.main_home_public_information}" toggleable="true" style="margin-top:10px;">
+				   <p:dataTable id="publicinformationtable" var="pubAnnounce" value="#{publicResources.pubAnnounce}">
+           	 	<p:column headerText="#{global.main_home_private_information_type_header}" width="20%;" sortBy="model">  
+                	<h:outputText value="#{pubAnnounce.type}" />
+            	</p:column>
+            	<p:column headerText="#{global.main_home_private_information_content_header}" width="80%;">
+            		<p:commandLink value="#{pubAnnounce.subject}"></p:commandLink>
+            </p:column>
+        </p:dataTable>
+        	<div align="right" style="margin-top: 2px;">
+				    <p:commandLink value="#{global.main_home_public_information_more}"></p:commandLink>
+				</div>
+			</p:fieldset>
+			<p:fieldset legend="#{global.main_home_private_information}" toggleable="true" style="margin-top:30px;"> 
+				<p:dataTable id="privateinformationtable" var="car" value="#{tableBean.cars}">  
+            		 
+           	 	<p:column headerText="#{global.main_home_public_information_type_header}" width="20%;" sortBy="model">  
+                	<h:outputText value="#{car.model}" />  
+            	</p:column>  
+  
+            	<p:column headerText="#{global.main_home_public_information_content_header}" width="80%;">
+            		<p:commandLink value="#{car.year}"></p:commandLink>  
+            </p:column>  
+        </p:dataTable>
+        <div align="right" style="margin-top: 2px;">
+				    <p:commandLink value="#{global.main_home_private_information_more}"></p:commandLink>
+				</div>
+			</p:fieldset>
 		</p:layoutUnit>
 
 		<p:layoutUnit position="center">
-			<h:form>  
-           		
-  
+			<h:form>
+				<p:panel header="内容" style="min-height:500px;"></p:panel>
         </h:form>
 		</p:layoutUnit>
 

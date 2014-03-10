@@ -8,10 +8,15 @@
 <h:head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><h:outputText value="#{global.auth_register_page_title}"></h:outputText></title>
+	<style type="text/css">
+body{
+	background-color: #F4F0EC;
+}
+</style>
 </h:head>
 <h:body>
 	<h:form id="registerForm">
-	 	<p:dialog visible="true" closable="false" draggable="false" resizable="false" header="#{global.auth_register_dialog_header}">
+	 	<p:dialog visible="true" closable="false" draggable="false" resizable="false" header="#{global.auth_register_dialog_header}" style="min-height:100%;min-width:40%;text-align:center;">
 	 		<p:panelGrid columns="2">
 	 			<h:outputText value="#{global.auth_register_userid}"></h:outputText>
 	 			<p:inputText value="#{registerController.user.id}" maxlength="30"></p:inputText>

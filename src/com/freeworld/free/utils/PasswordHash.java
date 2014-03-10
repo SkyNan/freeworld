@@ -17,7 +17,7 @@ public class PasswordHash {
 	public static String makePasswordHash(String password){
 		return md5Encrypt(password);
 	}
-
+	
 	public static String makePasswordHashBySha256(String pasword){
 		MessageDigest md;
 		try {
