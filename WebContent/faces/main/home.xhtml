@@ -21,7 +21,7 @@
 <h:body>
 	<p:layout fullPage="true">
 		<p:layoutUnit position="north" size="50" resizable="true"
-			closable="false" collapsible="true">
+			closable="false" collapsible="true" id="layout_north">
 			<!-- 			<h:form id="tabmenuform"> -->
 			<!-- 				<p:selectOneButton value="#{buttonBean.number}"> -->
 			<!-- 					<f:selectItem itemLabel="Option 1" itemValue="1" /> -->
@@ -35,9 +35,9 @@
 		</p:layoutUnit>
 
 		<p:layoutUnit position="south" size="50" resizable="true"
-			closable="false" collapsible="true">
+			closable="false" collapsible="true" id="layout_south">
 		</p:layoutUnit>
-		<p:layoutUnit position="west" size="200"
+		<p:layoutUnit position="west" size="200" id="layout_west"
 			header="#{global.main_home_menu}" resizable="true" closable="false"
 			collapsible="true">
 			<h:form>
@@ -46,7 +46,9 @@
 						<p:menuitem value="#{global.main_home_menu_student_list}"
 							icon="ui-icon-disk" />
 						<p:menuitem value="#{global.main_home_menu_student_new}"
-							icon="ui-icon-disk" />
+							process="@this" icon="ui-icon-disk"
+							actionListener="#{mainController.toNewStudent}"
+							update=":center_form" />
 						<p:menuitem value="#{global.main_home_menu_student_catagory}"
 							icon="ui-icon-disk" />
 					</p:submenu>
@@ -59,29 +61,41 @@
 							icon="ui-icon-disk" />
 					</p:submenu>
 					<p:submenu label="#{global.main_home_menu_course}">
-						<p:menuitem value="#{global.main_home_menu_course_list}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_course_new}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_course_course_to_teacher}" ajax="false" icon="ui-icon-disk" />						
+						<p:menuitem value="#{global.main_home_menu_course_list}"
+							ajax="false" icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_course_new}"
+							ajax="false" icon="ui-icon-disk" />
+						<p:menuitem
+							value="#{global.main_home_menu_course_course_to_teacher}"
+							ajax="false" icon="ui-icon-disk" />
 					</p:submenu>
 					<p:submenu label="#{global.main_home_menu_exam}">
-						<p:menuitem value="#{global.main_home_menu_exam_list}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_exam_new}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_exam_analyse}" ajax="false" icon="ui-icon-disk" />						
+						<p:menuitem value="#{global.main_home_menu_exam_list}"
+							ajax="false" icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_exam_new}" ajax="false"
+							icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_exam_analyse}"
+							ajax="false" icon="ui-icon-disk" />
 					</p:submenu>
 					<p:submenu label="#{global.main_home_menu_assignment}">
-						<p:menuitem value="#{global.main_home_menu_assignment_list}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_assignment_new}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_assignment_result}" ajax="false" icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_assignment_list}"
+							ajax="false" icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_assignment_new}"
+							ajax="false" icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_assignment_result}"
+							ajax="false" icon="ui-icon-disk" />
 					</p:submenu>
 					<p:submenu label="#{global.main_home_menu_communicate}">
-						<p:menuitem value="#{global.main_home_menu_student_test}" ajax="false" icon="ui-icon-disk" />
-						<p:menuitem value="#{global.main_home_menu_tieba}" ajax="false" icon="ui-icon-disk" />
-					</p:submenu>				
+						<p:menuitem value="#{global.main_home_menu_student_test}"
+							ajax="false" icon="ui-icon-disk" />
+						<p:menuitem value="#{global.main_home_menu_tieba}" ajax="false"
+							icon="ui-icon-disk" />
+					</p:submenu>
 				</p:menu>
 			</h:form>
 		</p:layoutUnit>
 
-		<p:layoutUnit position="east" size="300"
+		<p:layoutUnit position="east" size="300" id="layout_east"
 			header="#{global.main_home_announcement}" resizable="true"
 			closable="false" collapsible="true" collapsed="true">
 			<p:fieldset legend="#{global.main_home_public_information}"
@@ -125,13 +139,11 @@
 				</div>
 			</p:fieldset>
 		</p:layoutUnit>
-
-		<p:layoutUnit position="center">
-			<h:form>
-				<p:panel header="内容" style="min-height:500px;"></p:panel>
+		<p:layoutUnit position="center" id="layout_center">
+			<h:form id="center_form">
+				<ui:include src="#{mainController.currentURL}"></ui:include>
 			</h:form>
 		</p:layoutUnit>
-
 	</p:layout>
 
 </h:body>

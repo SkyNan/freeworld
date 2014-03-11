@@ -11,8 +11,8 @@
 <!--     <role-name>parents</role-name> -->
 <!--     <group-name>parents</group-name> -->
 <!--   </security-role-mapping> -->
-<!--   <security-role-mapping> -->
-<!--     <role-name>sysadmin</role-name> -->
-<!--     <group-name>sysadmin</group-name> -->
-<!--   </security-role-mapping> -->
+  <security-role-mapping>
+    <role-name>test</role-name>
+    <group-name>test</group-name>
+  </security-role-mapping>
 </glassfish-web-app>
