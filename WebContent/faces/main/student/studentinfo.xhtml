@@ -3,15 +3,15 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
-	<p:panel id="applicationMaintain" header="学生信息">
+	<p:panel id="studentinfo_panel" header="#{global.studentinfo_panle_header}">
 		<p:wizard >
-			<p:tab id="studentinfo_studentinfopanel" title="Personal">
+			<p:tab id="studentinfo_basic_info" title="#{global.studentinfo_basic_information}">
 			</p:tab>
 
-			<p:tab id="address" title="Address">
+			<p:tab id="studentinfo_parent_info" title="#{global.studentinfo_parent_information}">
 			</p:tab>
 
-			<p:tab id="contact" title="Contact">
+			<p:tab id="studentinfo_emergency_contact" title="#{global.studentinfo_emergency_information}">
 			</p:tab>
 
 			<p:tab id="confirm" title="Confirmation">
